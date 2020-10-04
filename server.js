@@ -11,10 +11,12 @@ var upload = multer({ dest: 'uploads/' });
 var app = express();
 
 app.use(cors());
-app.use('/public', express.static(process.cwd() + '/public'));
+app.use('/public', express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
-     res.sendFile(process.cwd() + '/views/index.html');
+  console.log('-----------------get index-------------------');
+  res.sendFile(__dirname + '/views/index.html');
+  console.log('-----------------done index-------------------');
   });
 
 app.post("/api/fileanalyse", upload.single('upfile'), function(req, res){
